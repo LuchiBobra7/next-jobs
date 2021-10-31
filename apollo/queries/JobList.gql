@@ -1,0 +1,12 @@
+query remotes($first: Int, $where: JobWhereInput) {
+  remotes {
+    id
+    name
+    slug
+    type
+    jobs(first: $first, where: $where) {
+      ...jobCard
+      locationNames
+    }
+  }
+}
