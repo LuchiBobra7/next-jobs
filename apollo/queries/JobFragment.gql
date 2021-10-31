@@ -1,0 +1,16 @@
+fragment jobCard on Job {
+  id
+  title
+  slug
+  tags {
+    slug
+    name
+    id
+  }
+  company {
+    name
+    logoUrl
+    websiteUrl
+    slug
+  }
+}

@@ -3,21 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"yarn run gql:gen:watch\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gql:gen": "graphql-codegen",
+    "gql:gen:watch": "graphql-codegen --watch"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.6.10",
+    "@apollo/client": "^3.4.16",
+    "@chakra-ui/react": "^1.6.8",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@fontsource/lato": "^4.5.0",
+    "@graphql-codegen/cli": "^2.2.2",
+    "@graphql-codegen/typescript-operations": "^2.2.0",
+    "@graphql-codegen/typescript-react-apollo": "^3.2.0",
+    "concurrently": "^6.3.0",
+    "dotenv": "^10.0.0",
     "framer-motion": "^4",
-    "next": "12.0.1",
+    "graphql": "^16.0.0",
+    "next": "11.1.2",
+    "next-with-apollo": "^5.2.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@graphql-codegen/near-operation-file-preset": "^2.2.0",
+    "@graphql-codegen/typescript": "^2.3.0",
     "@types/node": "16.11.6",
     "@types/react": "17.0.33",
     "eslint": "7",
