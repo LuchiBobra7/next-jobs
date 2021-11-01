@@ -4,6 +4,7 @@ import { getDataFromTree } from '@apollo/client/react/ssr'
 import withApollo from 'lib/withApollo'
 import { useRemotesQuery } from 'apollo/queries/__generated__/JobList'
 import { VStack, Text, Input } from '@chakra-ui/react'
+import Layout from 'components/layout'
 
 const Home: NextPage = () => {
   const [searchValue, setSearchValue] = useState<string>('')
@@ -18,14 +19,7 @@ const Home: NextPage = () => {
   })
   const jobList = data?.remotes[0]?.jobs
 
-  return (
-    <VStack>
-      <Input onChange={(e) => setSearchValue(e.target.value)} />
-      {jobList?.map((item) => (
-        <Text key={item?.id}>{item?.title}</Text>
-      ))}
-    </VStack>
-  )
+  return <Layout>hi</Layout>
 }
 
 export default withApollo(Home, { getDataFromTree })
