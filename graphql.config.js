@@ -4,7 +4,7 @@ const apiUrl = process.env.SERVER_API_ENDPOINT
 module.exports = {
   overwrite: true,
   schema: apiUrl,
-  documents: `./apollo/**/*.gql`,
+  documents: `./components/**/*.gql`,
   extensions: {
     codegen: {
       generates: {

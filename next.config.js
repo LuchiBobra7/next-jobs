@@ -11,6 +11,6 @@ module.exports = {
     SERVER_API_ENDPOINT: process.env.SERVER_API_ENDPOINT,
   },
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ['res.cloudinary.com', 'cdn.filestackcontent.com'],
   },
 }
