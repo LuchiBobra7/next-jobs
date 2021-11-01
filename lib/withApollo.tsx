@@ -4,24 +4,30 @@ import {
   HttpLink,
   InMemoryCache,
 } from '@apollo/client'
-import { useRouter } from 'next/router'
 import nextWithApollo from 'next-with-apollo'
+import {
+  IS_SERVER,
+  BROWSER_API_ENDPOINT,
+  SERVER_API_ENDPOINT,
+} from 'config/env'
 
 const withApollo = nextWithApollo(
-  ({ initialState }) => {
+  ({ initialState, ...rest }) => {
     return new ApolloClient({
-      ssrMode: typeof window === 'undefined',
+      ssrMode: IS_SERVER,
       link: new HttpLink({
-        uri: 'https://api.graphql.jobs/',
+        uri: IS_SERVER ? SERVER_API_ENDPOINT : BROWSER_API_ENDPOINT,
       }),
       cache: new InMemoryCache().restore(initialState || {}),
+      // @ts-ignore
+      defaultOptions: { ...rest },
     })
   },
   {
     render: ({ Page, props }) => {
       return (
         <ApolloProvider client={props.apollo}>
-          <Page {...props} />
+          <Page {...props} {...props.apollo.defaultOptions.ctx} />
         </ApolloProvider>
       )
     },

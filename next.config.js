@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
+require('dotenv').config()
+
 module.exports = {
   reactStrictMode: true,
-  env: {
-    SCHEMA_PATH: process.env.SCHEMA_PATH,
+  publicRuntimeConfig: {
+    BROWSER_API_ENDPOINT: process.env.BROWSER_API_ENDPOINT,
+    CLIENT_DOMAIN: process.env.CLIENT_DOMAIN,
+  },
+  serverRuntimeConfig: {
+    SERVER_API_ENDPOINT: process.env.SERVER_API_ENDPOINT,
   },
 }
