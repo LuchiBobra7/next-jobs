@@ -1,11 +1,10 @@
-import { FC } from 'react'
 import React from 'react'
 import { Box, useColorModeValue } from '@chakra-ui/react'
 
 type Props = {
-  onClick: () => void
+  [x: string]: any
 }
-const JobCard: FC<Props> = ({ children, ...props }) => {
+const JobCard = ({ children, ...props }: Props) => {
   const bg = useColorModeValue('white', 'darkHighlight')
   const boxShadow = useColorModeValue('md', 'none')
   return (
