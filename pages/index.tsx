@@ -1,26 +1,15 @@
-import { useState } from 'react'
 import { NextPage } from 'next'
+import { VStack, Text } from '@chakra-ui/react'
+import withApollo from '../lib/withApollo'
 import { getDataFromTree } from '@apollo/client/react/ssr'
-import withApollo from 'lib/withApollo'
-import { useRemotesQuery } from 'apollo/queries/__generated__/JobList'
-import { VStack, Text, Input } from '@chakra-ui/react'
+import { useRemotesQuery } from '../apollo/queries/__generated__/JobList'
 
 const Home: NextPage = () => {
-  const [searchValue, setSearchValue] = useState<string>('')
-  const { data } = useRemotesQuery({
-    variables: {
-      where: {
-        tags_some: {
-          slug_contains: searchValue?.toLowerCase(),
-        },
-      },
-    },
-  })
+  const { data } = useRemotesQuery()
   const jobList = data?.remotes[0]?.jobs
 
   return (
     <VStack>
-      <Input onChange={(e) => setSearchValue(e.target.value)} />
       {jobList?.map((item) => (
         <Text key={item?.id}>{item?.title}</Text>
       ))}
