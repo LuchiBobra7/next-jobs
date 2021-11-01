@@ -3,8 +3,8 @@ import { NextPage } from 'next'
 import { getDataFromTree } from '@apollo/client/react/ssr'
 import withApollo from 'lib/withApollo'
 import { useRemotesQuery } from 'apollo/queries/__generated__/JobList'
-import { VStack, Text, Input } from '@chakra-ui/react'
 import Layout from 'components/layout'
+import HeroSection from 'components/hero-section'
 
 const Home: NextPage = () => {
   const [searchValue, setSearchValue] = useState<string>('')
@@ -19,7 +19,11 @@ const Home: NextPage = () => {
   })
   const jobList = data?.remotes[0]?.jobs
 
-  return <Layout>hi</Layout>
+  return (
+    <Layout>
+      <HeroSection />
+    </Layout>
+  )
 }
 
 export default withApollo(Home, { getDataFromTree })

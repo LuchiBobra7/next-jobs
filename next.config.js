@@ -10,4 +10,7 @@ module.exports = {
   serverRuntimeConfig: {
     SERVER_API_ENDPOINT: process.env.SERVER_API_ENDPOINT,
   },
+  images: {
+    domains: ['res.cloudinary.com'],
+  },
 }
