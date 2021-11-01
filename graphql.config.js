@@ -1,5 +1,6 @@
 require('dotenv').config()
-const apiUrl = process.env.SERVER_API_ENDPOINT
+
+const apiUrl = process.env.SCHEMA_PATH || 'https://api.graphql.jobs/'
 
 module.exports = {
   overwrite: true,
