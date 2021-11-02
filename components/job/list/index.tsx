@@ -1,26 +1,15 @@
-import { FC } from 'react'
 import { useRouter } from 'next/router'
-import { Box, useColorModeValue } from '@chakra-ui/react'
 import { ROUTES } from 'constants/routes'
-import { JOBS_PER_HOME_PAGE } from 'constants/jobs'
 import JobCard from 'components/job/card'
 import JobItem from 'components/job/item'
 import JobListSkeleton from 'components/job/list/skeleton'
 import { removeEmptyParams } from 'utils/index'
 import { Query as QueryProps } from 'types/query'
-import { useRemotesQuery } from './__generated__/JobList'
-import React from 'react'
+import { JobList as JobListProps } from 'types/job'
 
-const JobList: FC = () => {
+const JobList = ({ jobs, jobsPerPage, loading }: JobListProps) => {
   const { push, query } = useRouter()
-  const { data, loading } = useRemotesQuery({
-    variables: {
-      first: JOBS_PER_HOME_PAGE,
-    },
-  })
-  const jobs = data?.remotes[0]?.jobs
-
-  if (loading) return <JobListSkeleton />
+  if (loading) return <JobListSkeleton jobsPerPage={jobsPerPage} />
   return (
     <>
       {jobs?.map((job) => (

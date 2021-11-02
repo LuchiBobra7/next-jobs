@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
 import Image from 'components/image'
-import { JobImage as JobImageProps } from 'types/job-image'
+import { JobImage as JobImageProps } from 'types/job'
 
 const JobImage = ({
   size = '56px',

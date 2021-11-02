@@ -1,0 +1,7 @@
+query job($input: JobInput!) {
+  job(input: $input) {
+    ...jobCard
+    description
+    applyUrl
+  }
+}

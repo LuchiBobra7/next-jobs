@@ -11,8 +11,6 @@ const Image = chakra(NextImage, {
       'quality',
       'blurDataURL',
       'placeholder',
-      'fallback',
-      'fallbackSrc',
     ].includes(prop)
   },
 })

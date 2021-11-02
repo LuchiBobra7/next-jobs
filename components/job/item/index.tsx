@@ -1,14 +1,9 @@
-import { FC } from 'react'
 import { Box, HStack, Heading, Text, Icon } from '@chakra-ui/react'
 import { HiOutlineBriefcase, HiOutlineLocationMarker } from 'react-icons/hi'
 import JobImage from 'components/job/image'
-import { JobCardFragment } from './__generated__/JobFragment'
+import { JobItem as JobItemProps } from 'types/job'
 
-type JobCardProps = {
-  job: JobCardFragment
-}
-
-const Jobjob: FC<JobCardProps> = ({ job }) => {
+const JobItem = ({ job }: JobItemProps) => {
   return (
     <>
       <JobImage src={job.company?.logoUrl} title={job.title} />
@@ -68,4 +63,4 @@ const Jobjob: FC<JobCardProps> = ({ job }) => {
   )
 }
 
-export default Jobjob
+export default JobItem

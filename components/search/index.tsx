@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { ROUTES } from 'constants/routes'
 import { Flex, Input, Button, useColorModeValue } from '@chakra-ui/react'
 import { removeEmptyParams, slugify } from 'utils/index'
-import { Query } from 'types/query'
+import { Query as QueryProps } from 'types/query'
 
 const Search = () => {
   const bg = useColorModeValue('white', 'gray.900')
@@ -25,7 +25,7 @@ const Search = () => {
         })
         push({
           pathname: ROUTES.JOBS,
-          query: queryParams as Query,
+          query: queryParams as QueryProps,
         })
       }}
     >
