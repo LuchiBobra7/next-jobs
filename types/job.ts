@@ -22,5 +22,5 @@ export type JobItem = {
 }
 
 export type JobDetails = {
-  selectedJob?: JobQuery['job']
+  selectedJob: JobQuery['job']
 }

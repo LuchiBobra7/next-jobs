@@ -39,21 +39,21 @@ const JobDetails = ({ selectedJob }: JobDetailsProps) => {
           <JobImage
             size="126px"
             borderRadius="full"
-            src={selectedJob?.company?.logoUrl}
-            title={selectedJob?.title}
+            src={selectedJob.company?.logoUrl}
+            title={selectedJob.title}
             display={{ base: 'none', lg: 'block' }}
           />
 
           <VStack spacing="1rem" align="flex-start">
             <Heading size="lg" display="flex" mb={{ lg: 5 }}>
-              {selectedJob?.title}
+              {selectedJob.title}
 
               <JobImage
                 size="46px"
                 ml={4}
                 borderRadius="md"
-                src={selectedJob?.company?.logoUrl}
-                title={selectedJob?.title}
+                src={selectedJob.company?.logoUrl}
+                title={selectedJob.title}
                 display={{ lg: 'none' }}
               />
             </Heading>
@@ -63,7 +63,7 @@ const JobDetails = ({ selectedJob }: JobDetailsProps) => {
                 as={Link}
                 colorScheme="brand"
                 size="lg"
-                href={selectedJob?.applyUrl}
+                href={selectedJob.applyUrl}
                 target="_blank"
               >
                 Apply Now
@@ -97,7 +97,7 @@ const JobDetails = ({ selectedJob }: JobDetailsProps) => {
             </Box>
             <Divider />
             <Box layerStyle="buttonList">
-              {selectedJob?.tags?.map((item) => (
+              {selectedJob.tags?.map((item) => (
                 <Button
                   key={item.id}
                   onClick={() => {
@@ -116,7 +116,7 @@ const JobDetails = ({ selectedJob }: JobDetailsProps) => {
         </HStack>
       </Flex>
       <Box layerStyle="content">
-        <ReactMarkdown>{selectedJob?.description as any}</ReactMarkdown>
+        <ReactMarkdown>{selectedJob.description as any}</ReactMarkdown>
       </Box>
     </>
   )

@@ -131,10 +131,10 @@ const JobsPage: NextPage = () => {
             h="full"
             w="full"
           >
-            {jobLoading ? (
-              <JobDetailsSkeleton />
+            {!jobLoading && jobData?.job?.id ? (
+              <JobDetails selectedJob={jobData.job} />
             ) : (
-              <JobDetails selectedJob={jobData?.job} />
+              <JobDetailsSkeleton />
             )}
           </Box>
         </Flex>
