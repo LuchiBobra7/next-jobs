@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Box,
   Flex,
@@ -22,7 +21,7 @@ import JobImage from 'components/job/image'
 import ShareButtons from './share-buttons'
 import { FiShare2 } from 'react-icons/fi'
 import { JobDetails as JobDetailsProps } from 'types/job'
-import { removeEmptyParams } from 'utils/index'
+import useQueryParams from 'hooks/useQueryParams'
 
 const JobDetails = ({ selectedJob }: JobDetailsProps) => {
   const currentUrl = () => {
@@ -31,7 +30,8 @@ const JobDetails = ({ selectedJob }: JobDetailsProps) => {
   }
   const [copyUrlBtnValue] = useState<string>(currentUrl)
   const { hasCopied, onCopy } = useClipboard(copyUrlBtnValue)
-  const { push } = useRouter()
+
+  const { setNewQuery } = useQueryParams(null)
   return (
     <>
       <Flex justify="center" direction="column">
@@ -47,7 +47,6 @@ const JobDetails = ({ selectedJob }: JobDetailsProps) => {
           <VStack spacing="1rem" align="flex-start">
             <Heading size="lg" display="flex" mb={{ lg: 5 }}>
               {selectedJob.title}
-
               <JobImage
                 size="46px"
                 ml={4}
@@ -100,13 +99,7 @@ const JobDetails = ({ selectedJob }: JobDetailsProps) => {
               {selectedJob.tags?.map((item) => (
                 <Button
                   key={item.id}
-                  onClick={() => {
-                    const queryParams = removeEmptyParams({
-                      q: item?.slug,
-                    })
-
-                    push(queryParams)
-                  }}
+                  onClick={() => setNewQuery({ q: item?.slug })}
                 >
                   {item.name}
                 </Button>

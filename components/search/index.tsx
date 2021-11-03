@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
 import { ROUTES } from 'constants/routes'
 import { Flex, Input, Button, useColorModeValue } from '@chakra-ui/react'
-import { removeEmptyParams, slugify } from 'utils/index'
-import { Query as QueryProps } from 'types/query'
+import useQueryParams from 'hooks/useQueryParams'
 
 const Search = () => {
   const bg = useColorModeValue('white', 'gray.900')
   const [searchValue, setSearchValue] = useState('')
-  const { push } = useRouter()
+  const { setNewQuery, setNewPath } = useQueryParams(null)
   return (
     <Flex
       as="form"
@@ -20,12 +18,9 @@ const Search = () => {
       bg={bg}
       onSubmit={(e) => {
         e.preventDefault()
-        const queryParams = removeEmptyParams({
-          q: slugify(searchValue),
-        })
-        push({
-          pathname: ROUTES.JOBS,
-          query: queryParams as QueryProps,
+        setNewPath(ROUTES.JOBS)
+        setNewQuery({
+          q: searchValue,
         })
       }}
     >

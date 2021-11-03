@@ -4,13 +4,14 @@ import { Box, useColorModeValue } from '@chakra-ui/react'
 type Props = {
   [x: string]: any
 }
-const JobCard = ({ children, ...props }: Props) => {
+const JobCard = ({ borderRadius, children, ...props }: Props) => {
   const bg = useColorModeValue('white', 'darkHighlight')
   const boxShadow = useColorModeValue('md', 'none')
   return (
     <Box
       as="article"
       display="flex"
+      borderRadius={borderRadius}
       p={6}
       bg={bg}
       boxShadow={boxShadow}

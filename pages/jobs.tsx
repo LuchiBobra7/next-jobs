@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { NextPage } from 'next'
 import { getDataFromTree } from '@apollo/client/react/ssr'
 import withApollo from 'lib/withApollo'
@@ -11,11 +11,21 @@ import {
   HStack,
   Text,
   Icon,
+  Button,
   Input,
   InputGroup,
   InputLeftElement,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerCloseButton,
+  useMediaQuery,
   useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react'
+import { isLgScreen } from 'theme'
 import Layout from 'components/layout'
 import { INNER_BLOCK_HEIGHT } from 'constants/layout'
 import { JOBS_PER_JOBS_PAGE } from 'constants/jobs'
@@ -26,10 +36,13 @@ import JobDetails from 'components/job/details'
 import JobDetailsSkeleton from 'components/job/details/skeleton'
 import { RiSearchLine } from 'react-icons/ri'
 import { HiOutlineBriefcase } from 'react-icons/hi'
+import useQueryParams from 'hooks/useQueryParams'
 
 const JobsPage: NextPage = () => {
   const bg = useColorModeValue('gray.50', 'gray.800')
-  const { query, push } = useRouter()
+  const { query } = useRouter()
+
+  const { setNewQuery } = useQueryParams(null)
   const { data, loading } = useRemotesQuery({
     variables: {
       first: JOBS_PER_JOBS_PAGE,
@@ -41,9 +54,17 @@ const JobsPage: NextPage = () => {
     },
   })
 
-  const { jobs } = data?.remotes[0] || {}
+  const { jobs } = data?.remotes[0] ?? {}
   const firstJob = jobs && jobs[0]
   const [getJob, { data: jobData, loading: jobLoading }] = useJobLazyQuery()
+
+  const [isLg] = useMediaQuery(isLgScreen)
+  const isJobInfo = !jobLoading && jobData?.job?.id
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const memoizedCallback = useMemo(() => {
+    if (!isLg && isJobInfo && query.title) onOpen()
+  }, [isLg, isJobInfo, query.title, onOpen])
 
   useEffect(() => {
     if (!!firstJob) {
@@ -57,9 +78,7 @@ const JobsPage: NextPage = () => {
         },
       })
     }
-  }, [query, getJob, firstJob])
-
-  console.log(jobData)
+  }, [query, firstJob, getJob, memoizedCallback])
 
   return (
     <Layout title="Jobs | DevJobs">
@@ -70,11 +89,7 @@ const JobsPage: NextPage = () => {
             {jobs?.length} results
           </Text>
           <HStack spacing="1rem">
-            <InputGroup
-              w="260px"
-              display={{ base: 'none', md: 'block' }}
-              zIndex="0"
-            >
+            <InputGroup w="260px" zIndex="0">
               <InputLeftElement pointerEvents="none" size="lg" color="gray.400">
                 <Icon as={RiSearchLine} w={5} h={5} />
               </InputLeftElement>
@@ -84,6 +99,9 @@ const JobsPage: NextPage = () => {
                 aria-label="Search by keywords..."
                 fontSize="sm"
                 defaultValue={query?.q}
+                onChange={(e) => {
+                  setNewQuery({ q: e.currentTarget.value })
+                }}
               />
             </InputGroup>
           </HStack>
@@ -119,6 +137,7 @@ const JobsPage: NextPage = () => {
                 jobs={jobs}
                 jobsPerPage={JOBS_PER_JOBS_PAGE}
                 loading={loading}
+                selectedJobId={isLg ? jobData?.job?.id : null}
               />
             </SimpleGrid>
           </Flex>
@@ -131,10 +150,38 @@ const JobsPage: NextPage = () => {
             h="full"
             w="full"
           >
-            {!jobLoading && jobData?.job?.id ? (
+            {isJobInfo ? (
               <JobDetails selectedJob={jobData.job} />
             ) : (
               <JobDetailsSkeleton />
+            )}
+
+            {!isLg && isJobInfo && (
+              <Drawer
+                onClose={() => {
+                  setNewQuery({ q: query?.q })
+                  onClose()
+                }}
+                isOpen={isOpen}
+                placement="right"
+                size="md"
+              >
+                <DrawerOverlay />
+                <DrawerContent>
+                  <DrawerHeader
+                    borderBottomWidth="1px"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
+                    <Button onClick={() => onClose()}>Back to Jobs</Button>
+                    <DrawerCloseButton />
+                  </DrawerHeader>
+                  <DrawerBody py={7}>
+                    <JobDetails selectedJob={jobData?.job} />
+                  </DrawerBody>
+                </DrawerContent>
+              </Drawer>
             )}
           </Box>
         </Flex>

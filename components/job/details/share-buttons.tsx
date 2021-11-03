@@ -6,7 +6,6 @@ type Props = {
 }
 
 const ShareButtons = ({ copyUrlBtnValue }: Props) => {
-  console.log(copyUrlBtnValue)
   return (
     <>
       {shareButtonsData.map((item, i) => (

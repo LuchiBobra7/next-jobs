@@ -15,6 +15,8 @@ export type JobList = {
   jobs: RemotesQuery['remotes'][0]['jobs']
   jobsPerPage: number
   loading: boolean
+  cardBorderRadius?: string | number
+  selectedJobId?: string | null
 }
 
 export type JobItem = {

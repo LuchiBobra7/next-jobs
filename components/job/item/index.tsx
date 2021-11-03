@@ -1,3 +1,4 @@
+import React from 'react'
 import { Box, HStack, Heading, Text, Icon } from '@chakra-ui/react'
 import { HiOutlineBriefcase, HiOutlineLocationMarker } from 'react-icons/hi'
 import JobImage from 'components/job/image'
