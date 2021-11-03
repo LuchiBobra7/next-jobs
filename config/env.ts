@@ -8,6 +8,6 @@ export const ENV = process.env.NODE_ENV || 'development'
 
 export const { CLIENT_DOMAIN } = publicRuntimeConfig
 
-export const { BROWSER_API_ENDPOINT } = publicRuntimeConfig
+export const { BROWSER_API_ENDPOINT, CLOUDINARY_CLOUD } = publicRuntimeConfig
 
 export const { SERVER_API_ENDPOINT } = serverRuntimeConfig

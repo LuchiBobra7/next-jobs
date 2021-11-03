@@ -1,29 +1,11 @@
 import { Flex, Text, Heading, Box, Container } from '@chakra-ui/react'
-import { buildUrl } from 'cloudinary-build-url'
+import { buildUrlData } from 'utils'
 import Image from 'components/image'
 import Search from 'components/search'
-
-export const info = {
-  subTitle: `For developers`,
-  title: `Join us & Apply to remote software jobs`,
-  description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-    beatae nobis assumenda sequi ipsum nam quia quo, quasi iure
-    obcaecati dolore corrupti?`,
-}
+import { info } from './hero-info'
 
 const HeroSection = () => {
-  const url = buildUrl('dev_rm5h87', {
-    cloud: {
-      cloudName: 'dxxzokncv',
-    },
-    transformations: {
-      effect: {
-        name: 'pixelate',
-        value: 40,
-      },
-    },
-  })
-
+  const url = buildUrlData('dev_rm5h87')
   return (
     <Box as="section">
       <Flex
@@ -78,7 +60,7 @@ const HeroSection = () => {
             width="600px"
             layout="fill"
             alt="hero"
-            src="https://res.cloudinary.com/dxxzokncv/image/upload/v1635777478/dev_rm5h87.svg"
+            src="/dev.svg"
             placeholder="blur"
             blurDataURL={url}
           />

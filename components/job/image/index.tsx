@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
 import Image from 'components/image'
-import { JobImage as JobImageProps } from 'types/job-image'
+import { JobImage as JobImageProps } from 'types/job'
 
 const JobImage = ({
   size = '56px',
@@ -31,13 +31,15 @@ const JobImage = ({
         loading="lazy"
         position="relative"
         lineHeight={2}
+        overflow="hidden"
         //Fallback for broken image
         _before={{
           content: '""',
           position: 'absolute',
           width: '100%',
           height: '100%',
-          background: `url(${fallbackSrc})`,
+          background: `url(${fallbackSrc}) no-repeat`,
+          backgroundSize: 'cover',
           left: '0px',
           display: 'flex',
         }}
