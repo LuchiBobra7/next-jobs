@@ -85,13 +85,19 @@ const JobsPage: NextPage = () => {
   return (
     <Layout title="Jobs | DevJobs">
       <Container py={6} overflow="visible">
-        <Flex justify="space-between" align="center" w="full" mb={6}>
+        <Flex
+          justify="space-between"
+          wrap="wrap"
+          align="center"
+          w="full"
+          mb={{ base: 0, md: 6 }}
+        >
           <Text fontSize="sm" as="div" fontWeight="semibold">
             <Icon as={HiOutlineBriefcase} mx={2} w={5} h={5} /> Showing{' '}
             {jobs?.length} results
           </Text>
-          <HStack spacing="1rem">
-            <InputGroup w="260px" zIndex="0">
+          <HStack my={{ base: 4, md: 0 }} w={{ base: '100%', md: '20rem' }}>
+            <InputGroup zIndex="0">
               <InputLeftElement pointerEvents="none" size="lg" color="gray.400">
                 <Icon as={RiSearchLine} w={5} h={5} />
               </InputLeftElement>
@@ -166,7 +172,7 @@ const JobsPage: NextPage = () => {
                 }}
                 isOpen={isOpen}
                 placement="right"
-                size="md"
+                size="sm"
               >
                 <DrawerOverlay />
                 <DrawerContent>

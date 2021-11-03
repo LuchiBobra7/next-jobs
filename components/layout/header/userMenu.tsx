@@ -1,4 +1,6 @@
 import React from 'react'
+import { DefaultProfile } from 'next-auth'
+import { signOut } from 'next-auth/client'
 import {
   Box,
   Button,
@@ -12,7 +14,11 @@ import {
 } from '@chakra-ui/react'
 import { HiChevronDown } from 'react-icons/hi'
 
-const UserMenu = () => {
+type Props = {
+  user?: DefaultProfile
+}
+
+const UserMenu = ({ user }: Props) => {
   return (
     <Menu placement="bottom-end">
       <MenuButton
@@ -22,23 +28,27 @@ const UserMenu = () => {
         rightIcon={<HiChevronDown />}
       >
         <Avatar
-          name={'User'}
-          src={''}
+          name={user?.name || 'User'}
+          src={user?.image || ''}
           width="40px"
           height="40px"
           backgroundColor="brand.200"
         />
-        <Box display="inline-flex" ml="1rem" flexDirection="column">
+        <Box
+          display={{ base: 'none', md: 'inline-flex' }}
+          ml="1rem"
+          flexDirection="column"
+        >
           <Text fontSize="sm" fontWeight="light" color="gray.500">
             Hello,
           </Text>
-          <Text color="gray.900">{'User'}</Text>
+          <Text color="gray.900">{user?.name || 'User'}</Text>
         </Box>
       </MenuButton>
       <Portal>
         <MenuList fontSize="sm" minW="160px">
           <MenuItem>My Profile</MenuItem>
-          <MenuItem>Logout</MenuItem>
+          <MenuItem onClick={() => signOut()}>Logout</MenuItem>
         </MenuList>
       </Portal>
     </Menu>
