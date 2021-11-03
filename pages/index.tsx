@@ -24,7 +24,6 @@ const Home: NextPage = () => {
     },
   })
   const { jobs } = data?.remotes[0] ?? {}
-
   return (
     <Layout>
       <HeroSection />
@@ -53,6 +52,7 @@ const Home: NextPage = () => {
             gap={10}
             mb={6}
           >
+            {!loading && !jobs?.length && 'Empty here'}
             <JobList
               jobs={jobs}
               jobsPerPage={JOBS_PER_HOME_PAGE}

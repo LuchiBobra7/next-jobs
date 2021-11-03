@@ -1,4 +1,6 @@
 import { Query } from 'types/query'
+import { buildUrl } from 'cloudinary-build-url'
+import { CLOUDINARY_CLOUD } from 'config/env'
 
 export const isEmpty = (val: any) => {
   return val === undefined || val == null || val.length <= 0 ? true : false
@@ -25,4 +27,21 @@ export const removeEmptyParams = (obj: Query): Query => {
         ])
     ) || {}
   )
+}
+
+export const buildUrlData = (src: string) => {
+  const url = buildUrl(src, { cloud: { cloudName: CLOUDINARY_CLOUD } })
+
+  const blurredUrl = buildUrl(src, {
+    cloud: {
+      cloudName: CLOUDINARY_CLOUD,
+    },
+    transformations: {
+      effect: {
+        name: 'pixelate',
+        value: 40,
+      },
+    },
+  })
+  return blurredUrl
 }

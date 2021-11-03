@@ -6,6 +6,7 @@ module.exports = {
   publicRuntimeConfig: {
     BROWSER_API_ENDPOINT: process.env.BROWSER_API_ENDPOINT,
     CLIENT_DOMAIN: process.env.CLIENT_DOMAIN,
+    CLOUDINARY_CLOUD: process.env.CLOUDINARY_CLOUD,
   },
   serverRuntimeConfig: {
     SERVER_API_ENDPOINT: process.env.SERVER_API_ENDPOINT,

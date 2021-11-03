@@ -34,6 +34,7 @@ import { useJobLazyQuery } from 'apollo/queries/__generated__/JobDetails'
 import JobList from 'components/job/list'
 import JobDetails from 'components/job/details'
 import JobDetailsSkeleton from 'components/job/details/skeleton'
+import EmptyData from 'components/empty-data'
 import { RiSearchLine } from 'react-icons/ri'
 import { HiOutlineBriefcase } from 'react-icons/hi'
 import useQueryParams from 'hooks/useQueryParams'
@@ -43,7 +44,7 @@ const JobsPage: NextPage = () => {
   const { query } = useRouter()
 
   const { setNewQuery } = useQueryParams(null)
-  const { data, loading } = useRemotesQuery({
+  const { data, loading, error } = useRemotesQuery({
     variables: {
       first: JOBS_PER_JOBS_PAGE,
       where: {
@@ -80,6 +81,7 @@ const JobsPage: NextPage = () => {
     }
   }, [query, firstJob, getJob, memoizedCallback])
 
+  if (!loading && !jobs?.length) return <EmptyData imgSrc="/empty_data.svg" />
   return (
     <Layout title="Jobs | DevJobs">
       <Container py={6} overflow="visible">
