@@ -1,7 +1,7 @@
-import * as Types from '../../__generated__/types';
+import * as Types from '../../../../apollo/__generated__/types';
 
 import { gql } from '@apollo/client';
-import { JobCardFragmentDoc } from './JobFragment';
+import { JobCardFragmentDoc } from '../../item/__generated__/JobFragment';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type RemotesQueryVariables = Types.Exact<{
