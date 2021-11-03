@@ -1,18 +1,11 @@
 import React from 'react'
+import { signIn, useSession } from 'next-auth/client'
 import {
   Container,
-  Box,
   Flex,
   HStack,
   Button,
   Icon,
-  Avatar,
-  Portal,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Text,
   useColorModeValue,
 } from '@chakra-ui/react'
 import { FaGithub } from 'react-icons/fa'
@@ -21,11 +14,12 @@ import SwitchColorModeBtn from 'components/switch-color-mode'
 import Navigation from 'components/layout/header/navigation'
 import UserMenu from 'components/layout/header/userMenu'
 import { HEADER_HEIGHT } from 'constants/layout'
-import { HiChevronDown } from 'react-icons/hi'
+import { User } from 'types/user'
 
 const Header = () => {
   const bg = useColorModeValue('whiteAlpha.700', 'darkHighlight')
-  const session = false
+  const [session, loading] = useSession()
+  const isLoaded = loading ? `translateY(-${HEADER_HEIGHT})` : `translateY(0)`
   return (
     <Flex
       as="header"
@@ -38,7 +32,8 @@ const Header = () => {
       shadow="sm"
       backdropFilter="saturate(180%) blur(20px)"
       bg={bg}
-      transition="all .3s"
+      transition="all 0.2s ease-in"
+      transform={isLoaded}
     >
       <Container
         display="flex"
@@ -52,7 +47,7 @@ const Header = () => {
         <HStack align="center" spacing="1rem">
           <SwitchColorModeBtn />
           {session ? (
-            <UserMenu />
+            <UserMenu user={session.user as User} />
           ) : (
             <Button
               colorScheme="gray"
@@ -60,6 +55,7 @@ const Header = () => {
               fontSize="sm"
               fontWeight="normal"
               leftIcon={<Icon as={FaGithub} w={5} h={5} />}
+              onClick={() => signIn('github')}
             >
               Login with Github
             </Button>
