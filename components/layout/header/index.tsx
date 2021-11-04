@@ -6,6 +6,7 @@ import {
   Flex,
   HStack,
   Button,
+  Text,
   Icon,
   useColorModeValue,
 } from '@chakra-ui/react'
@@ -27,7 +28,7 @@ const Header = () => {
       top="0"
       zIndex="1"
       py={4}
-      height={HEADER_HEIGHT}
+      minHeight={HEADER_HEIGHT}
       align="center"
       shadow="sm"
       backdropFilter="saturate(180%) blur(20px)"
@@ -38,6 +39,7 @@ const Header = () => {
       <Container
         display="flex"
         justifyContent="space-between"
+        flexWrap="wrap"
         alignItems="center"
       >
         <HStack align="center" spacing="3rem">
@@ -54,10 +56,14 @@ const Header = () => {
               variant="outline"
               fontSize="sm"
               fontWeight="normal"
-              leftIcon={<Icon as={FaGithub} w={5} h={5} />}
               onClick={() => signIn('github')}
             >
-              Login with Github
+              <>
+                <Icon as={FaGithub} w={5} h={5} />
+                <Text display={{ base: 'none', md: 'inline' }} ml={3}>
+                  Login with Github
+                </Text>
+              </>
             </Button>
           )}
         </HStack>
