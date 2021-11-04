@@ -13,14 +13,12 @@ type Props = {
   search?: boolean
 }
 const EmptyData = ({
-  imgSrc = '/empty_data.svg',
-  imgBlurredSrc = '/Personal_files-rafiki_y6bsoa',
+  imgSrc = 'Personal_files-rafiki_y6bsoa',
   imgSize = '460px',
   text = 'Ups!... no results found',
   search = true,
 }: Props) => {
-  const url = buildUrlData(imgBlurredSrc)
-  console.log(url)
+  const { url, blurredUrl } = buildUrlData(imgSrc)
   return (
     <Layout>
       <Container
@@ -34,8 +32,8 @@ const EmptyData = ({
           width={imgSize}
           height={imgSize}
           placeholder="blur"
-          src={imgSrc}
-          blurDataURL={imgSrc}
+          src={url}
+          blurDataURL={blurredUrl}
         />
         <Heading mb={9}>{text}</Heading>
         {search ? <Search /> : <Button>Back to home page</Button>}

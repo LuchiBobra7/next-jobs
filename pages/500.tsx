@@ -4,7 +4,7 @@ import EmptyData from 'components/empty-data'
 const NoMatch = () => {
   return (
     <EmptyData
-      imgSrc="/error.svg"
+      imgSrc="Gravity-rafiki_vvep4h"
       text="Houston, we have a problem…"
       search={false}
     />

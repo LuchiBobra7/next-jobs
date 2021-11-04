@@ -8,9 +8,11 @@ import {
   Flex,
   Heading,
   Text,
+  useMediaQuery,
 } from '@chakra-ui/react'
 import Link from 'components/link'
 import { ROUTES } from 'constants/routes'
+import { MIN_POST_WIDTH } from 'constants/layout'
 import { JOBS_PER_HOME_PAGE } from 'constants/jobs'
 import Layout from 'components/layout'
 import HeroSection from 'components/hero-section'
@@ -25,16 +27,11 @@ const Home: NextPage = () => {
   })
   const { jobs } = data?.remotes[0] ?? {}
   return (
-    <Layout>
+    <Layout title="🐣 DevJobs | Just another pet project">
       <HeroSection />
       <Box as="section">
         <Container>
-          <Flex
-            align="center"
-            justify="space-between"
-            direction={{ base: 'column', md: 'row' }}
-            mb={7}
-          >
+          <Flex align="center" justify="space-between" mb={7} flexWrap="wrap">
             <Heading as="h3" fontSize="xl" color="primary.700">
               Older than a year remote jobs
             </Heading>
@@ -42,7 +39,6 @@ const Home: NextPage = () => {
             <Link
               href={ROUTES.JOBS}
               color="brand.500"
-              display={{ base: 'none', md: 'inline' }}
               fontSize="sm"
               _hover={{ textDecoration: 'none' }}
             >
@@ -52,9 +48,10 @@ const Home: NextPage = () => {
               </Text>
             </Link>
           </Flex>
+
           <SimpleGrid
             columns={[2, null, 3]}
-            minChildWidth={['320px', null, null]}
+            minChildWidth={[MIN_POST_WIDTH, null, null]}
             gap={{ base: 5, md: 10 }}
           >
             {!loading && !jobs?.length && 'Empty here'}
@@ -65,21 +62,6 @@ const Home: NextPage = () => {
               cardBorderRadius={10}
             />
           </SimpleGrid>
-          <Link
-            href={ROUTES.JOBS}
-            color="brand.500"
-            mx="auto"
-            justifyContent="flex-end"
-            my={6}
-            display={{ base: 'flex', md: 'none' }}
-            fontSize="sm"
-            _hover={{ textDecoration: 'none' }}
-          >
-            Browse all{' '}
-            <Text as="span" ml={2}>
-              👉
-            </Text>
-          </Link>
         </Container>
       </Box>
     </Layout>

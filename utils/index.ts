@@ -38,10 +38,10 @@ export const buildUrlData = (src: string) => {
     },
     transformations: {
       effect: {
-        name: 'pixelate',
-        value: 40,
+        name: 'blur',
+        value: 600,
       },
     },
   })
-  return blurredUrl
+  return { url, blurredUrl }
 }

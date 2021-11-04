@@ -1,5 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🐣 Just another pet project
+![alt text for screen readers](https://res.cloudinary.com/dxxzokncv/image/upload/v1636036714/Screenshot_ibwtlk.png "Text to show on mouseover")
 
+Built with
+- [Next.js](https://nextjs.org/) 🚀 
+- [Typescript](https://www.typescriptlang.org/) 👀
+- [Apollo Client](https://www.apollographql.com) 🔥
+- [GraphQL Codegen ](https://www.graphql-code-generator.com/docs/plugins/typescript) 🤖
+- 
 ## Getting Started
 
 First, run the development server:

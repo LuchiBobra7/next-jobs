@@ -16,6 +16,10 @@ export const theme = extendTheme({
       flexWrap: 'wrap',
     },
     content: {
+      fontSize: {
+        base: '0.85rem',
+        md: '1rem',
+      },
       'h1, h2, h3, h4, h5, h6': {
         my: '0.5rem',
       },
@@ -97,7 +101,7 @@ export const theme = extendTheme({
     Container: {
       baseStyle: {
         maxW: 'container.xl',
-        px: 5,
+        px: 7,
       },
     },
 

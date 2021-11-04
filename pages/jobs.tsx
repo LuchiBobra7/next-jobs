@@ -27,7 +27,7 @@ import {
 } from '@chakra-ui/react'
 import { isLgScreen } from 'theme'
 import Layout from 'components/layout'
-import { INNER_BLOCK_HEIGHT } from 'constants/layout'
+import { INNER_BLOCK_HEIGHT, MIN_POST_WIDTH } from 'constants/layout'
 import { JOBS_PER_JOBS_PAGE } from 'constants/jobs'
 import { useRemotesQuery } from 'apollo/queries/__generated__/JobList'
 import { useJobLazyQuery } from 'apollo/queries/__generated__/JobDetails'
@@ -81,7 +81,7 @@ const JobsPage: NextPage = () => {
     }
   }, [query, firstJob, getJob, memoizedCallback])
 
-  if (!loading && !jobs?.length) return <EmptyData imgSrc="/empty_data.svg" />
+  if (!loading && !jobs?.length) return <EmptyData />
   return (
     <Layout title="Jobs | DevJobs">
       <Container py={6} overflow="visible">
@@ -130,22 +130,21 @@ const JobsPage: NextPage = () => {
             h={{ lg: INNER_BLOCK_HEIGHT }}
             flexShrink={0}
             bg={{ lg: bg }}
-            overflowY={{ base: 'auto', lg: 'scroll' }}
+            overflowY={{ base: 'visible', lg: 'scroll' }}
             flexDirection="column"
             borderTopRadius="md"
           >
             <SimpleGrid
               columns={[1, 2, 1]}
-              minChildWidth="320px"
-              gap={{ base: 6, lg: 0 }}
-              px={{ base: '10px', lg: 0 }}
-              py={{ base: '10px', lg: 0 }}
+              minChildWidth={MIN_POST_WIDTH}
+              gap={{ base: 5, lg: 0 }}
             >
               <JobList
                 jobs={jobs}
                 jobsPerPage={JOBS_PER_JOBS_PAGE}
                 loading={loading}
                 selectedJobId={isLg ? jobData?.job?.id : null}
+                cardBorderRadius={{ base: 10, md: 0 }}
               />
             </SimpleGrid>
           </Flex>
@@ -183,7 +182,7 @@ const JobsPage: NextPage = () => {
                     justifyContent="space-between"
                   >
                     <Button onClick={() => onClose()}>Back to Jobs</Button>
-                    <DrawerCloseButton />
+                    <DrawerCloseButton position="static" />
                   </DrawerHeader>
                   <DrawerBody py={7}>
                     <JobDetails selectedJob={jobData?.job} />
