@@ -1,4 +1,5 @@
 import React from 'react'
+import { DefaultProfile } from 'next-auth'
 import { signOut } from 'next-auth/client'
 import {
   Box,
@@ -12,10 +13,9 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { HiChevronDown } from 'react-icons/hi'
-import { User } from 'types/user'
 
 type Props = {
-  user?: User | null | undefined
+  user?: DefaultProfile
 }
 
 const UserMenu = ({ user }: Props) => {
@@ -34,7 +34,11 @@ const UserMenu = ({ user }: Props) => {
           height="40px"
           backgroundColor="brand.200"
         />
-        <Box display="inline-flex" ml="1rem" flexDirection="column">
+        <Box
+          display={{ base: 'none', md: 'inline-flex' }}
+          ml="1rem"
+          flexDirection="column"
+        >
           <Text fontSize="sm" fontWeight="light" color="gray.500">
             Hello,
           </Text>

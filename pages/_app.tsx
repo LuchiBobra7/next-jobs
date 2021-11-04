@@ -1,10 +1,13 @@
 import { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
+import { Provider } from 'next-auth/client'
 import { theme } from 'theme'
 
 const App = ({ Component, pageProps }: AppProps) => (
   <ChakraProvider theme={theme}>
-    <Component {...pageProps} />
+    <Provider session={pageProps.session}>
+      <Component {...pageProps} />
+    </Provider>
   </ChakraProvider>
 )
 
