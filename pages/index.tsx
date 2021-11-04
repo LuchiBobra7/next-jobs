@@ -8,6 +8,7 @@ import {
   Flex,
   Heading,
   Text,
+  useMediaQuery,
 } from '@chakra-ui/react'
 import Link from 'components/link'
 import { ROUTES } from 'constants/routes'
@@ -16,6 +17,7 @@ import Layout from 'components/layout'
 import HeroSection from 'components/hero-section'
 import JobList from 'components/job/list'
 import { useRemotesQuery } from 'apollo/queries/__generated__/JobList'
+import { isLgScreen } from 'theme'
 
 const Home: NextPage = () => {
   const { data, loading } = useRemotesQuery({
@@ -24,33 +26,31 @@ const Home: NextPage = () => {
     },
   })
   const { jobs } = data?.remotes[0] ?? {}
+  const [isLg] = useMediaQuery(isLgScreen)
   return (
     <Layout>
       <HeroSection />
       <Box as="section">
         <Container>
-          <Flex
-            align="center"
-            justify="space-between"
-            display={{ base: 'none', md: 'inline' }}
-            mb={7}
-          >
-            <Heading as="h3" fontSize="xl" color="primary.700">
-              Older than a year remote jobs
-            </Heading>
+          {isLg && (
+            <Flex align="center" justify="space-between" mb={7}>
+              <Heading as="h3" fontSize="xl" color="primary.700">
+                Older than a year remote jobs
+              </Heading>
 
-            <Link
-              href={ROUTES.JOBS}
-              color="brand.500"
-              fontSize="sm"
-              _hover={{ textDecoration: 'none' }}
-            >
-              Browse all{' '}
-              <Text as="span" ml={2}>
-                👉
-              </Text>
-            </Link>
-          </Flex>
+              <Link
+                href={ROUTES.JOBS}
+                color="brand.500"
+                fontSize="sm"
+                _hover={{ textDecoration: 'none' }}
+              >
+                Browse all{' '}
+                <Text as="span" ml={2}>
+                  👉
+                </Text>
+              </Link>
+            </Flex>
+          )}
           <SimpleGrid
             columns={[2, null, 3]}
             minChildWidth={['320px', null, null]}
@@ -64,21 +64,22 @@ const Home: NextPage = () => {
               cardBorderRadius={10}
             />
           </SimpleGrid>
-          <Link
-            href={ROUTES.JOBS}
-            color="brand.500"
-            mx="auto"
-            justifyContent="flex-end"
-            my={6}
-            display={{ base: 'flex', md: 'none' }}
-            fontSize="sm"
-            _hover={{ textDecoration: 'none' }}
-          >
-            Browse all{' '}
-            <Text as="span" ml={2}>
-              👉
-            </Text>
-          </Link>
+          {!isLg && (
+            <Link
+              href={ROUTES.JOBS}
+              color="brand.500"
+              mx="auto"
+              justifyContent="flex-end"
+              my={6}
+              fontSize="sm"
+              _hover={{ textDecoration: 'none' }}
+            >
+              Browse all{' '}
+              <Text as="span" ml={2}>
+                👉
+              </Text>
+            </Link>
+          )}
         </Container>
       </Box>
     </Layout>
