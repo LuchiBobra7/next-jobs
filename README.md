@@ -6,7 +6,8 @@ Built with
 - [Typescript](https://www.typescriptlang.org/) 👀
 - [Apollo Client](https://www.apollographql.com) 🔥
 - [GraphQL Codegen ](https://www.graphql-code-generator.com/docs/plugins/typescript) 🤖
-- 
+- [Chakra UI](https://chakra-ui.com) 🍬
+
 ## Getting Started
 
 First, run the development server:
