@@ -4,7 +4,6 @@ import { Flex, Input, Button, useColorModeValue } from '@chakra-ui/react'
 import useQueryParams from 'hooks/useQueryParams'
 
 const Search = () => {
-  const bg = useColorModeValue('white', 'gray.900')
   const [searchValue, setSearchValue] = useState('')
   const { setNewQuery, setNewPath } = useQueryParams(null)
   return (
@@ -12,10 +11,8 @@ const Search = () => {
       as="form"
       boxShadow="sm"
       p="1"
-      minWidth={460}
       borderRadius="lg"
       borderWidth="1px"
-      bg={bg}
       onSubmit={(e) => {
         e.preventDefault()
         setNewPath(ROUTES.JOBS)

@@ -29,7 +29,12 @@ const Home: NextPage = () => {
       <HeroSection />
       <Box as="section">
         <Container>
-          <Flex align="center" justify="space-between" mb={7}>
+          <Flex
+            align="center"
+            justify="space-between"
+            direction={{ base: 'column', md: 'row' }}
+            mb={7}
+          >
             <Heading as="h3" fontSize="xl" color="primary.700">
               Older than a year remote jobs
             </Heading>
@@ -37,6 +42,7 @@ const Home: NextPage = () => {
             <Link
               href={ROUTES.JOBS}
               color="brand.500"
+              display={{ base: 'none', md: 'inline' }}
               fontSize="sm"
               _hover={{ textDecoration: 'none' }}
             >
@@ -49,8 +55,7 @@ const Home: NextPage = () => {
           <SimpleGrid
             columns={[2, null, 3]}
             minChildWidth={['320px', null, null]}
-            gap={10}
-            mb={6}
+            gap={{ base: 5, md: 10 }}
           >
             {!loading && !jobs?.length && 'Empty here'}
             <JobList
@@ -60,6 +65,21 @@ const Home: NextPage = () => {
               cardBorderRadius={10}
             />
           </SimpleGrid>
+          <Link
+            href={ROUTES.JOBS}
+            color="brand.500"
+            mx="auto"
+            justifyContent="flex-end"
+            my={6}
+            display={{ base: 'flex', md: 'none' }}
+            fontSize="sm"
+            _hover={{ textDecoration: 'none' }}
+          >
+            Browse all{' '}
+            <Text as="span" ml={2}>
+              👉
+            </Text>
+          </Link>
         </Container>
       </Box>
     </Layout>

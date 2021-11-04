@@ -18,7 +18,7 @@ const HeroSection = () => {
       >
         <Flex
           direction="column"
-          w={{ base: '70%', lg: '44%' }}
+          w={{ md: '70%', lg: '44%' }}
           justify={{
             base: 'center',
             lg: 'space-around',
@@ -54,7 +54,7 @@ const HeroSection = () => {
           </Heading>
           <Search />
         </Flex>
-        <Box w={{ base: '50%' }} pt={12}>
+        <Box w={{ base: '100%', md: '50%' }} pt={12}>
           <Image
             height="420px"
             width="600px"

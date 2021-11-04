@@ -59,6 +59,14 @@ export const theme = extendTheme({
         backgroundColor: 'gray.400',
         borderRadius: '20px',
       },
+      '@media(-webkit - min - device - pixel - ratio: 1.25), (min - resolution: 120 dpi)':
+        {
+          body: {
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+            perspective: 1000,
+          },
+        },
     }),
   },
   colors: {
@@ -89,7 +97,7 @@ export const theme = extendTheme({
     Container: {
       baseStyle: {
         maxW: 'container.xl',
-        px: 9,
+        px: 5,
       },
     },
 

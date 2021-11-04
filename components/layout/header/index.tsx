@@ -1,4 +1,5 @@
 import React from 'react'
+import { DefaultProfile } from 'next-auth'
 import { signIn, useSession } from 'next-auth/client'
 import {
   Container,
@@ -14,11 +15,11 @@ import SwitchColorModeBtn from 'components/switch-color-mode'
 import Navigation from 'components/layout/header/navigation'
 import UserMenu from 'components/layout/header/userMenu'
 import { HEADER_HEIGHT } from 'constants/layout'
-import { User } from 'types/user'
 
 const Header = () => {
   const bg = useColorModeValue('whiteAlpha.700', 'darkHighlight')
   const [session, loading] = useSession()
+  const isLoaded = loading ? `translateY(-${HEADER_HEIGHT})` : `translateY(0)`
   return (
     <Flex
       as="header"
@@ -32,7 +33,7 @@ const Header = () => {
       backdropFilter="saturate(180%) blur(20px)"
       bg={bg}
       transition="all 0.2s ease-in"
-      //transform={isLoaded}
+      transform={isLoaded}
     >
       <Container
         display="flex"
@@ -45,7 +46,9 @@ const Header = () => {
         </HStack>
         <HStack align="center" spacing="1rem">
           <SwitchColorModeBtn />
-          {!session ? (
+          {session ? (
+            <UserMenu user={session?.user as DefaultProfile} />
+          ) : (
             <Button
               colorScheme="gray"
               variant="outline"
@@ -56,8 +59,6 @@ const Header = () => {
             >
               Login with Github
             </Button>
-          ) : (
-            <UserMenu user={session?.user as User} />
           )}
         </HStack>
       </Container>
