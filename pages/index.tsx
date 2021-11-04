@@ -32,7 +32,7 @@ const Home: NextPage = () => {
           <Flex
             align="center"
             justify="space-between"
-            direction={{ base: 'column', md: 'row' }}
+            display={{ base: 'none', md: 'inline' }}
             mb={7}
           >
             <Heading as="h3" fontSize="xl" color="primary.700">
@@ -42,7 +42,6 @@ const Home: NextPage = () => {
             <Link
               href={ROUTES.JOBS}
               color="brand.500"
-              display={{ base: 'none', md: 'inline' }}
               fontSize="sm"
               _hover={{ textDecoration: 'none' }}
             >

@@ -33,25 +33,26 @@ const HeroSection = () => {
           <Text fontSize="md" color="brand.500" fontWeight="bold" mb={1}>
             {info.subTitle}
           </Text>
-          <Heading
+          <Text
             as="h1"
-            size="2xl"
+            fontSize={{ base: '1.85rem', md: '2.5rem', lg: '3rem' }}
+            lineHeight={1}
             mb={4}
             fontWeight="bold"
             letterSpacing="wider"
           >
             {info.title}
-          </Heading>
-          <Heading
+          </Text>
+          <Text
             as="p"
-            size="md"
+            fontSize={{ base: '1.1rem', lg: '1.25rem' }}
             fontWeight="normal"
             opacity="0.6"
             lineHeight={1.5}
             mb={4}
           >
             {info.description}
-          </Heading>
+          </Text>
           <Search />
         </Flex>
         <Box w={{ base: '100%', md: '50%' }} pt={12}>

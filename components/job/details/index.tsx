@@ -35,7 +35,7 @@ const JobDetails = ({ selectedJob }: JobDetailsProps) => {
   return (
     <>
       <Flex justify="center" direction="column">
-        <HStack spacing="2rem" mb={7} align="flex-start">
+        <HStack spacing={{ base: 0, md: '2rem' }} mb={7} align="flex-start">
           <JobImage
             size="126px"
             borderRadius="full"
@@ -44,7 +44,7 @@ const JobDetails = ({ selectedJob }: JobDetailsProps) => {
             display={{ base: 'none', lg: 'block' }}
           />
 
-          <VStack spacing="1rem" align="flex-start">
+          <VStack spacing={{ base: '0.5rem', md: '1rem' }} align="flex-start">
             <Heading size="lg" display="flex" mb={{ lg: 5 }}>
               {selectedJob.title}
               <JobImage
