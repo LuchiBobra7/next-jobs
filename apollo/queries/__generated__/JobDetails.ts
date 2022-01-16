@@ -3,7 +3,7 @@ import * as Types from '../../__generated__/types';
 import { gql } from '@apollo/client';
 import { JobCardFragmentDoc } from './JobFragment';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
+const defaultOptions = {} as const;
 export type JobQueryVariables = Types.Exact<{
   input: Types.JobInput;
 }>;

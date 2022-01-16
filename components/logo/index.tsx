@@ -8,7 +8,7 @@ const Logo: FC = () => {
     <Link
       display="flex"
       alignItems="center"
-      fontSize="xl"
+      fontSize="1.2rem"
       fontWeight="bold"
       mb="0"
       letterSpacing="0.2px"

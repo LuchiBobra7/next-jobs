@@ -8,7 +8,6 @@ import {
   Flex,
   Heading,
   Text,
-  useMediaQuery,
 } from '@chakra-ui/react'
 import Link from 'components/link'
 import { ROUTES } from 'constants/routes'

@@ -40,6 +40,7 @@ const Search = () => {
         borderRadius="lg"
         letterSpacing="wide"
         fontSize="md"
+        display={{ base: 'none', md: 'inline-flex' }}
       >
         Find jobs
       </Button>

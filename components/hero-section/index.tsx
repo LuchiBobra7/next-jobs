@@ -5,7 +5,7 @@ import Search from 'components/search'
 import { info } from './hero-info'
 
 const HeroSection = () => {
-  const { url, blurredUrl } = buildUrlData('dev_lgdmer')
+  const { url } = buildUrlData('dev_lgdmer')
   return (
     <Box as="section">
       <Flex
@@ -14,7 +14,7 @@ const HeroSection = () => {
         justify={['center', 'space-around', 'space-between']}
         direction={{ base: 'column-reverse', lg: 'row' }}
         wrap="wrap"
-        minH={{ lg: '50vh' }}
+        minH={{ lg: '48vh' }}
       >
         <Flex
           direction="column"
@@ -27,7 +27,7 @@ const HeroSection = () => {
             base: 'center',
             lg: 'left',
           }}
-          pt={8}
+          pt={{ base: 4, md: 0 }}
           pb={{ base: 8, lg: 0 }}
         >
           <Text fontSize="md" color="brand.500" fontWeight="bold" mb={1}>
@@ -55,15 +55,13 @@ const HeroSection = () => {
           </Text>
           <Search />
         </Flex>
-        <Box w={{ base: '100%', md: '50%' }} pt={12}>
+        <Box w={{ base: '100%', md: '50%' }} pt={7}>
           <Image
+            src={url}
             height="453px"
             width="600px"
             layout="fill"
             alt="hero"
-            placeholder="blur"
-            src={url}
-            blurDataURL={blurredUrl}
           />
         </Box>
       </Flex>
