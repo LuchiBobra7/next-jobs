@@ -93,9 +93,9 @@ export const theme = extendTheme({
     body: `Lato, ${baseTheme.fonts?.body}`,
   },
   shadows: {
-    sm: `0px 6px 15px 0px rgba(64, 79, 104, 0.05)`,
-    md: `0px 4px 16px rgba(0, 0, 0, 0.06), 0px 8px 32px  rgba(0, 0, 0, 0.04)`,
-    lg: `0px 4px 36px  rgba(0, 0, 0, 0.1)`,
+    sm: `rgba(64, 79, 104, 0.05) 0px 6px 15px 0px`,
+    md: `rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.04) 0px 0px 0px 1px;`,
+    lg: `rgba(0, 0, 0, 0.1) 0px 4px 36px, rgba(0, 0, 0, 0.04) 0px 0px 0px 1px;`,
   },
   components: {
     Container: {

@@ -19,8 +19,7 @@ import { HEADER_HEIGHT } from 'constants/layout'
 
 const Header = () => {
   const bg = useColorModeValue('whiteAlpha.700', 'darkHighlight')
-  const [session, loading] = useSession()
-  const isLoaded = loading ? `translateY(-${HEADER_HEIGHT})` : `translateY(0)`
+  const [session] = useSession()
   return (
     <Flex
       as="header"
@@ -34,7 +33,6 @@ const Header = () => {
       backdropFilter="saturate(180%) blur(20px)"
       bg={bg}
       transition="all 0.2s ease-in"
-      transform={isLoaded}
     >
       <Container
         display="flex"

@@ -3,10 +3,10 @@ import * as Types from '../../__generated__/types';
 import { gql } from '@apollo/client';
 import { JobCardFragmentDoc } from './JobFragment';
 import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
+const defaultOptions = {} as const;
 export type RemotesQueryVariables = Types.Exact<{
-  first?: Types.Maybe<Types.Scalars['Int']>;
-  where?: Types.Maybe<Types.JobWhereInput>;
+  first?: Types.InputMaybe<Types.Scalars['Int']>;
+  where?: Types.InputMaybe<Types.JobWhereInput>;
 }>;
 
 

@@ -9,10 +9,6 @@ export const navItems: NavItem[] = [
     href: JOBS,
   },
   {
-    title: 'Remote Companies',
-    href: COMPANIES,
-  },
-  {
     title: 'About project',
     href: ABOUT,
   },

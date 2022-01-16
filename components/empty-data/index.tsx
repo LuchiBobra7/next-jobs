@@ -18,7 +18,7 @@ const EmptyData = ({
   text = 'Ups!... no results found',
   search = true,
 }: Props) => {
-  const { url, blurredUrl } = buildUrlData(imgSrc)
+  const { url } = buildUrlData(imgSrc)
   return (
     <Layout>
       <Container
@@ -27,14 +27,7 @@ const EmptyData = ({
         alignItems="center"
         flexDirection="column"
       >
-        <Image
-          alt="No results"
-          width={imgSize}
-          height={imgSize}
-          placeholder="blur"
-          src={url}
-          blurDataURL={blurredUrl}
-        />
+        <Image alt="No results" width={imgSize} height={imgSize} src={url} />
         <Heading mb={9}>{text}</Heading>
         {search ? <Search /> : <Button>Back to home page</Button>}
       </Container>

@@ -2,10 +2,11 @@ import React from 'react'
 import { Box } from '@chakra-ui/react'
 import Image from 'components/image'
 import { JobImage as JobImageProps } from 'types/job'
+import { JOB_IMAGE_PREVIEW_SIZE } from 'constants/layout'
 
 const JobImage = ({
-  size = '56px',
-  borderRadius = 'lg',
+  size = JOB_IMAGE_PREVIEW_SIZE,
+  borderRadius = '50%',
   src = '',
   title = 'Image',
   fallbackSrc = '/job.svg',
