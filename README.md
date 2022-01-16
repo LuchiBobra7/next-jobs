@@ -1,4 +1,4 @@
-# Dev Jobs 👨‍💻 👨‍💻
+# Dev Jobs 👩‍💻 👨‍💻
 
 > Just another pet project 😁
 
@@ -20,7 +20,6 @@
 ## Preview 👀
 
 ![Home Page Preview](https://res.cloudinary.com/dxxzokncv/image/upload/v1636036714/Screenshot_ibwtlk.png 'Home Page Preview')
-[Download design link](https://ui8.net/astikayasa/products/cryptoket---nft-marketplace-ui-kit)
 
 ## Getting Started 🦄
 
